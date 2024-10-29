@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Insert</title>
+</head>
+<body>
+<h1>Registrar Entrada y Sálida del Vehiculo</h1>
+
+<form th:action="@{/save}" th:object="${iovehiculo}" method="post">
+    <label for="placa_vehiculo">Placa del vehiculo:</label>
+    <input type="text" id="placa_vehiculo" name="placa_vehiculo" maxlength="6" required>
+    <br>
+    <label for="hora_entrada">Hora de entrada:</label>
+    <input type="number" id="hora_entrada" name="hora_entrada" min="0" max="23" required>
+    <br>
+    <label for="hora_salida">Hora de Salida</label>
+    <input type="number" id="hora_salida" name="hora_salida" min="0" max="23">
+    <br>
+    <label for="ubicacion">Ubicacion:</label>
+    <input type="text" id="ubicacion" name="ubicacion" required>
+    <br>
+
+    <label for="tipoVehiculo">Tipo de vehículo:</label>
+    <select id="tipoVehiculo" name="tipoVehiculo" required>
+        <option value="">Selecciona un tipo de vehículo</option>
+        <th:block th:each="tipo : ${tiposVehiculo}">
+            <option th:value="${tipo.tipo_vehiculo_id}" th:text="${tipo.name}"></option>
+        </th:block>
+    </select>
+    <br>
+
+    <button type="submit">Registrar</button>
+</form>
+</body>
+</html>

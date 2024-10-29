@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>selectAll</title>
+</head>
+<body>
+<h1>Lista de Registros de Entradas y Salidas de Vehiculos al Parqueadero</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Placa del Vehiculo</th>
+        <th>Hora de Entrada</th>
+        <th>Hora de Salida</th>
+        <th>Ubicación</th>
+        <th>Tipo de Vehiculo</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="iovehiculo : ${iovehiculos}">
+        <td th:text="${iovehiculo.id}"></td>
+        <td th:text="${iovehiculo.placa_vehiculo}"></td>
+        <td th:text="${iovehiculo.hora_entrada}"></td>
+        <td th:text="${iovehiculo.hora_salida}"></td>
+        <td th:text="${iovehiculo.ubicacion}"></td>
+        <td th:text="${iovehiculo.tipoVehiculo.name}"></td> <!-- Muestra el nombre del tipo de vehículo -->
+
+        <td sec:authorize="hasRole('Administrador')">
+            <input type="button" value="Actualizar"
+                   th:onclick="|window.location.href='@{/admin/formUpdate/{id}(id=${iovehiculo.id})}'|"/>
+        </td>
+
+        <td sec:authorize="hasRole('Administrador')">
+            <input type="button" value="Eliminar"
+                   th:onclick="|if(confirm('¿Estás seguro de que deseas eliminar este registro?')) window.location.href='@{/admin/eliminar/{id}(id=${iovehiculo.id})}'|"/>
+        </td>
+
+    </tr>
+    </tbody>
+</table>
+<a th:href="@{/}">Volver a la página principal</a>
+</body>
+</html>

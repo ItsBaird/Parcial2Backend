@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+</head>
+<body>
+  <h1>Sistema de Gestión de Parqueadero</h1>
+  <h1>Bienvenido</h1>
+
+    <table>
+        <tr>
+            <td>Para Ver Información de Todos los Vehículos</td>
+            <td><input type="button" value="Ver Todo" th:onclick="|window.location.href='@{/user/selectAll}'|" /></td>
+        </tr>
+        <tr>
+            <td>Para Registrar la entrada de un Vehiculo</td>
+            <td><input type="button" value="Registrar" th:onclick="|window.location.href='@{/admin/formInsert}'|" /></td>
+        </tr>
+    <table/>
+
+    <form th:action="@{/logout}" method="post">
+        <button type="submit">Cerrar sesión</button>
+    </form>
+</body>
+</html>
